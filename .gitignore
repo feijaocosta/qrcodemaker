@@ -1,0 +1,25 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+/tmp/
+*.tmp
+*.bak
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build outputs (if we add build step in future)
+dist/
+build/
+*.min.js
+*.min.css

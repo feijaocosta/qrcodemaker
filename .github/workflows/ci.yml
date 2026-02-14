@@ -1,0 +1,68 @@
+name: CI - Code Quality
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Code Quality Checks
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate HTML
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+        with:
+          root: .
+          
+      - name: Check file structure
+        run: |
+          echo "Checking required files..."
+          test -f index.html || (echo "Missing index.html" && exit 1)
+          test -f styles/main.css || (echo "Missing styles/main.css" && exit 1)
+          test -f js/app.js || (echo "Missing js/app.js" && exit 1)
+          echo "All required files present ✓"
+          
+      - name: Verify domain separation
+        run: |
+          echo "Checking domain separation..."
+          test -d js/domain || (echo "Missing domain layer" && exit 1)
+          test -d js/infrastructure || (echo "Missing infrastructure layer" && exit 1)
+          test -d js/presentation || (echo "Missing presentation layer" && exit 1)
+          echo "Domain separation verified ✓"
+
+  security:
+    name: Security Checks
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Check for secrets
+        run: |
+          echo "Scanning for potential secrets..."
+          if grep -r "password\|secret\|api_key\|token" --include="*.js" --include="*.html" .; then
+            echo "Warning: Found potential secrets in code"
+            exit 1
+          fi
+          echo "No secrets found ✓"
+          
+      - name: Verify CSP
+        run: |
+          echo "Checking Content Security Policy..."
+          if ! grep -q "Content-Security-Policy" index.html; then
+            echo "Error: No Content Security Policy found"
+            exit 1
+          fi
+          echo "CSP present ✓"

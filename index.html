@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <meta name="description" content="Gerador de QR Code simples e seguro - Kingdom Apps">
+    <title>QR Code Maker - Kingdom Apps</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="branding">
+                <h1>QR Code Maker</h1>
+                <p class="subtitle">Kingdom Apps</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="card">
+                <h2>Gerar QR Code</h2>
+                <p class="description">Digite uma URL válida para gerar seu QR Code</p>
+                
+                <form id="qrForm" class="qr-form">
+                    <div class="form-group">
+                        <label for="urlInput">URL:</label>
+                        <input 
+                            type="url" 
+                            id="urlInput" 
+                            name="url" 
+                            placeholder="https://exemplo.com.br" 
+                            required
+                            aria-label="URL para gerar QR Code"
+                            autocomplete="off"
+                        >
+                        <span class="error-message" id="errorMessage" role="alert"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sizeSelect">Tamanho:</label>
+                        <select id="sizeSelect" name="size" aria-label="Tamanho do QR Code">
+                            <option value="200">Pequeno (200x200)</option>
+                            <option value="300" selected>Médio (300x300)</option>
+                            <option value="400">Grande (400x400)</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Gerar QR Code</button>
+                </form>
+            </div>
+
+            <div id="resultContainer" class="result-container hidden">
+                <div class="card">
+                    <h3>Seu QR Code</h3>
+                    <div id="qrcodeDisplay" class="qrcode-display"></div>
+                    <div class="action-buttons">
+                        <button id="downloadBtn" class="btn btn-secondary">Baixar QR Code</button>
+                        <button id="newQrBtn" class="btn btn-outline">Gerar Novo</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2026 Kingdom Apps - QR Code Maker</p>
+            <p class="footer-note">Sistema seguro e sem armazenamento de dados</p>
+        </footer>
+    </div>
+
+    <!-- QR Code Library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js" crossorigin="anonymous"></script>
+    
+    <!-- Application Scripts -->
+    <script type="module" src="./js/app.js"></script>
+</body>
+</html>

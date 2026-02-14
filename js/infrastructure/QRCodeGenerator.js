@@ -22,12 +22,11 @@ export class QRCodeGenerator {
 
             await QRCode.toCanvas(canvas, options.text, {
                 width: options.width,
-                height: options.height,
                 color: {
                     dark: options.colorDark,
                     light: options.colorLight
                 },
-                errorCorrectionLevel: 'H'
+                errorCorrectionLevel: options.errorCorrectionLevel
             });
 
             return canvas;

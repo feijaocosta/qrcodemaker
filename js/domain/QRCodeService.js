@@ -30,7 +30,6 @@ export class QRCodeService {
         return {
             text: url,
             width: validatedSize,
-            height: validatedSize,
             colorDark: "#000000",
             colorLight: "#ffffff",
             errorCorrectionLevel: 'H' // High error correction

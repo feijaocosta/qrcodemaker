@@ -30,10 +30,9 @@ export class QRCodeService {
         return {
             text: url,
             width: validatedSize,
-            height: validatedSize,
             colorDark: "#000000",
             colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.H // High error correction
+            errorCorrectionLevel: 'H' // High error correction
         };
     }
 

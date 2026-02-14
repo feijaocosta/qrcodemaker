@@ -65,7 +65,17 @@ git clone https://github.com/feijaocosta/qrcodemaker.git
 cd qrcodemaker
 ```
 
-2. Abra o arquivo `index.html` em um navegador ou use um servidor local:
+2. Instale as dependências:
+```bash
+npm install
+```
+
+3. (Opcional) Reconstrua a biblioteca QRCode vendorizada:
+```bash
+npm run build
+```
+
+4. Abra o arquivo `index.html` em um navegador ou use um servidor local:
 ```bash
 # Python 3
 python -m http.server 8000
@@ -74,12 +84,16 @@ python -m http.server 8000
 npx serve
 ```
 
-3. Acesse: `http://localhost:8000`
+5. Acesse: `http://localhost:8000`
 
 ## 📦 Dependências
 
-- **QRCode.js** (v1.5.3): Biblioteca para geração de QR Codes
+- **QRCode.js** (v1.5.3): Biblioteca para geração de QR Codes (bundled localmente em `vendor/`)
 - **Google Fonts - Inter**: Tipografia moderna
+
+### Estrutura de Dependências
+
+O projeto utiliza npm para gerenciar dependências de desenvolvimento, mas a biblioteca QRCode é "vendorizada" (incluída no repositório) para evitar problemas de CORS e garantir disponibilidade offline. A biblioteca bundled está localizada em `vendor/qrcode.min.js`.
 
 ## 🎨 Design
 

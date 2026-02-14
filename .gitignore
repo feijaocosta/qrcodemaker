@@ -1,3 +1,7 @@
+# Node modules
+node_modules/
+package-lock.json
+
 # OS files
 .DS_Store
 Thumbs.db
@@ -21,5 +25,7 @@ npm-debug.log*
 # Build outputs (if we add build step in future)
 dist/
 build/
-*.min.js
-*.min.css
+
+# Allow vendored libraries
+!vendor/*.min.js
+!vendor/*.min.css

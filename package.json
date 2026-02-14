@@ -1,0 +1,32 @@
+{
+  "name": "qrcodemaker",
+  "version": "1.0.0",
+  "description": "Sistema simples e seguro para geração de QR Codes para links.",
+  "main": "index.js",
+  "scripts": {
+    "build": "mkdir -p vendor && npx browserify -r qrcode -s QRCode | npx terser --compress --mangle > vendor/qrcode.min.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feijaocosta/qrcodemaker.git"
+  },
+  "keywords": [
+    "qrcode",
+    "generator",
+    "qr-code-maker"
+  ],
+  "author": "Kingdom Apps",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/feijaocosta/qrcodemaker/issues"
+  },
+  "homepage": "https://github.com/feijaocosta/qrcodemaker#readme",
+  "dependencies": {
+    "qrcode": "^1.5.3"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.1"
+  }
+}

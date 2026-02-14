@@ -20,6 +20,17 @@ class QRCodeMakerApp {
     }
 
     init() {
+        // Check if QRCode library is loaded
+        if (typeof QRCode === 'undefined') {
+            console.error('QRCode library failed to load. Check CSP settings and network connection.');
+            // Show a user-friendly error in production
+            setTimeout(() => {
+                if (typeof QRCode === 'undefined') {
+                    alert('Erro: Não foi possível carregar a biblioteca QRCode. Verifique sua conexão com a internet e tente recarregar a página.');
+                }
+            }, 2000);
+        }
+        
         this.setupEventListeners();
         console.log('QR Code Maker initialized - Kingdom Apps');
     }

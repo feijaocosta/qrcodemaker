@@ -6,12 +6,24 @@
 
 export class QRCodeService {
     /**
+     * Check if QRCode library is available
+     * @returns {boolean}
+     */
+    static isQRCodeAvailable() {
+        return typeof QRCode !== 'undefined';
+    }
+
+    /**
      * Generate QR Code configuration
      * @param {string} url - The URL to encode
      * @param {number} size - The size of the QR code
      * @returns {Object} QR Code generation options
      */
     static getQRCodeOptions(url, size = 300) {
+        if (!this.isQRCodeAvailable()) {
+            throw new Error('Biblioteca QRCode não carregada. Verifique sua conexão.');
+        }
+
         // Validate size
         const validatedSize = this.validateSize(size);
         
